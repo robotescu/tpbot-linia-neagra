@@ -1,19 +1,9 @@
-function masoara_distanta () {
-    dist1 = TPBot.sonarReturn(TPBot.SonarUnit.Centimeters)
-    dist2 = TPBot.sonarReturn(TPBot.SonarUnit.Centimeters)
-    if (Math.abs(dist2 - dist1) < 10) {
-        dist = dist2
-    }
-}
 let dist = 0
-let dist2 = 0
-let dist1 = 0
 basic.showIcon(IconNames.Tortoise)
 TPBot.headlightColor(0x0000ff)
 basic.forever(function () {
-    dist = 100
-    masoara_distanta()
-    if (dist < 10) {
+    dist = TPBot.sonarReturn(TPBot.SonarUnit.Centimeters)
+    if (dist >= 3 && dist <= 7) {
         TPBot.stopCar()
         for (let index = 0; index < 3; index++) {
             TPBot.headlightColor(0xff0000)
@@ -22,6 +12,7 @@ basic.forever(function () {
             basic.pause(500)
         }
     } else {
+        TPBot.headlightColor(0x0000ff)
         if (TPBot.trackLine(TPBot.TrackingState.L_R_line)) {
             TPBot.setWheels(20, 20)
         }
