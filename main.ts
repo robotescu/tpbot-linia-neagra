@@ -7,9 +7,10 @@ basic.forever(function () {
         TPBot.stopCar()
         for (let index = 0; index < 3; index++) {
             TPBot.headlightColor(0xff0000)
-            basic.pause(500)
+            basic.pause(200)
+            music.playTone(262, music.beat(BeatFraction.Half))
             TPBot.headlightColor(0xffffff)
-            basic.pause(500)
+            basic.pause(200)
         }
     } else {
         TPBot.headlightColor(0x0000ff)
